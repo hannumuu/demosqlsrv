@@ -1,0 +1,341 @@
+{
+  "name": "SemanticModel",
+  "compatibilityLevel": 1400,
+  "model": {
+    "culture": "en-US",
+    "dataSources": [
+      {
+        "type": "structured",
+        "name": "SQL/localhost;NorthwindDW",
+        "connectionDetails": {
+          "protocol": "tds",
+          "address": {
+            "server": "localhost",
+            "database": "NorthwindDW"
+          },
+          "authentication": null,
+          "query": null
+        },
+        "options": {},
+        "credential": {
+          "AuthenticationKind": "ServiceAccount",
+          "EncryptConnection": false
+        }
+      }
+    ],
+    "tables": [
+      {
+        "name": "DimEmployee",
+        "columns": [
+          {
+            "name": "EmployeeID",
+            "dataType": "int64",
+            "sourceColumn": "EmployeeID"
+          },
+          {
+            "name": "EmployeeName",
+            "dataType": "string",
+            "sourceColumn": "EmployeeName"
+          },
+          {
+            "name": "EmployeeTitle",
+            "dataType": "string",
+            "sourceColumn": "EmployeeTitle"
+          },
+          {
+            "name": "ManagerName",
+            "dataType": "string",
+            "sourceColumn": "ManagerName"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/localhost;NorthwindDW\",",
+                "    dbo_DimEmployee = Source{[Schema=\"dbo\",Item=\"DimEmployee\"]}[Data]",
+                "in",
+                "    dbo_DimEmployee"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "DimProduct",
+        "columns": [
+          {
+            "name": "ProductID",
+            "dataType": "int64",
+            "sourceColumn": "ProductID"
+          },
+          {
+            "name": "ProductName",
+            "dataType": "string",
+            "sourceColumn": "ProductName"
+          },
+          {
+            "name": "UnitPrice",
+            "dataType": "decimal",
+            "sourceColumn": "UnitPrice"
+          },
+          {
+            "name": "CategoryID",
+            "dataType": "int64",
+            "sourceColumn": "CategoryID"
+          },
+          {
+            "name": "CategoryName",
+            "dataType": "string",
+            "sourceColumn": "CategoryName"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/localhost;NorthwindDW\",",
+                "    dbo_DimProduct = Source{[Schema=\"dbo\",Item=\"DimProduct\"]}[Data]",
+                "in",
+                "    dbo_DimProduct"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "FactOrder",
+        "columns": [
+          {
+            "name": "PostalCode",
+            "dataType": "string",
+            "sourceColumn": "PostalCode"
+          },
+          {
+            "name": "ProductID",
+            "dataType": "int64",
+            "sourceColumn": "ProductID"
+          },
+          {
+            "name": "EmployeeId",
+            "dataType": "int64",
+            "sourceColumn": "EmployeeId"
+          },
+          {
+            "name": "SupplierId",
+            "dataType": "int64",
+            "sourceColumn": "SupplierId"
+          },
+          {
+            "name": "Total Sales",
+            "dataType": "decimal",
+            "sourceColumn": "Total Sales"
+          },
+          {
+            "name": "Discount",
+            "dataType": "double",
+            "sourceColumn": "Discount"
+          },
+          {
+            "name": "Unit Sales",
+            "dataType": "int64",
+            "sourceColumn": "Unit Sales"
+          },
+          {
+            "name": "TimeKey",
+            "dataType": "int64",
+            "sourceColumn": "TimeKey"
+          },
+          {
+            "name": "OrderID",
+            "dataType": "int64",
+            "sourceColumn": "OrderID"
+          },
+          {
+            "name": "CustomerID",
+            "dataType": "int64",
+            "sourceColumn": "CustomerID"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/localhost;NorthwindDW\",",
+                "    dbo_FactOrder = Source{[Schema=\"dbo\",Item=\"FactOrder\"]}[Data]",
+                "in",
+                "    dbo_FactOrder"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "DimDate",
+        "columns": [
+          {
+            "name": "DateKey",
+            "dataType": "int64",
+            "sourceColumn": "DateKey"
+          },
+          {
+            "name": "Date",
+            "dataType": "dateTime",
+            "sourceColumn": "Date"
+          },
+          {
+            "name": "DayNameShort",
+            "dataType": "string",
+            "sourceColumn": "DayNameShort"
+          },
+          {
+            "name": "DayNameLong",
+            "dataType": "string",
+            "sourceColumn": "DayNameLong"
+          },
+          {
+            "name": "Weeknbr",
+            "dataType": "int64",
+            "sourceColumn": "Weeknbr"
+          },
+          {
+            "name": "WeeknbrCode",
+            "dataType": "string",
+            "sourceColumn": "WeeknbrCode"
+          },
+          {
+            "name": "YearWeek",
+            "dataType": "string",
+            "sourceColumn": "YearWeek"
+          },
+          {
+            "name": "DayNbr",
+            "dataType": "int64",
+            "sourceColumn": "DayNbr"
+          },
+          {
+            "name": "Monthnbr",
+            "dataType": "int64",
+            "sourceColumn": "Monthnbr"
+          },
+          {
+            "name": "YearMonth",
+            "dataType": "string",
+            "sourceColumn": "YearMonth"
+          },
+          {
+            "name": "MonthYear",
+            "dataType": "string",
+            "sourceColumn": "MonthYear"
+          },
+          {
+            "name": "DayOfMonthnbr",
+            "dataType": "int64",
+            "sourceColumn": "DayOfMonthnbr"
+          },
+          {
+            "name": "Year",
+            "dataType": "int64",
+            "sourceColumn": "Year"
+          },
+          {
+            "name": "LastDayOfMonth",
+            "dataType": "string",
+            "sourceColumn": "LastDayOfMonth"
+          },
+          {
+            "name": "LastDayOfQuartal",
+            "dataType": "string",
+            "sourceColumn": "LastDayOfQuartal"
+          },
+          {
+            "name": "LastDayOfFirstHalfOfYear",
+            "dataType": "string",
+            "sourceColumn": "LastDayOfFirstHalfOfYear"
+          },
+          {
+            "name": "LastDayOfYear",
+            "dataType": "string",
+            "sourceColumn": "LastDayOfYear"
+          },
+          {
+            "name": "LastDayOfOngoingMonth",
+            "dataType": "string",
+            "sourceColumn": "LastDayOfOngoingMonth"
+          },
+          {
+            "name": "WorkingDayAmount",
+            "dataType": "int64",
+            "sourceColumn": "WorkingDayAmount"
+          },
+          {
+            "name": "DayAmount",
+            "dataType": "int64",
+            "sourceColumn": "DayAmount"
+          },
+          {
+            "name": "Quarter",
+            "dataType": "int64",
+            "sourceColumn": "Quarter"
+          },
+          {
+            "name": "YearQuarter",
+            "dataType": "string",
+            "sourceColumn": "YearQuarter"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/localhost;NorthwindDW\",",
+                "    dbo_DimDate = Source{[Schema=\"dbo\",Item=\"DimDate\"]}[Data]",
+                "in",
+                "    dbo_DimDate"
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "24c72d86-9ae2-4e94-b103-5efccc95ddb9",
+        "fromTable": "FactOrder",
+        "fromColumn": "ProductID",
+        "toTable": "DimProduct",
+        "toColumn": "ProductID"
+      },
+      {
+        "name": "cbb6d035-a14f-4e0e-9ada-cdbc880d44ce",
+        "fromTable": "FactOrder",
+        "fromColumn": "EmployeeId",
+        "toTable": "DimEmployee",
+        "toColumn": "EmployeeID"
+      }
+    ],
+    "annotations": [
+      {
+        "name": "ClientCompatibilityLevel",
+        "value": "500"
+      }
+    ]
+  },
+  "id": "SemanticModel"
+}

@@ -1,8 +1,5 @@
 USE [NorthwindDW]
 GO
-
-
-
 -- DimDate
 exec insert_DIM_DATE
 
@@ -20,21 +17,19 @@ SELECT E1.[EmployeeID]
 GO
 
 ---- DimCustomers
---TRUNCATE TABLE DimCustomers
---GO
---SELECT [CustomerID]
---      ,[CompanyName]
---      ,[ContactName]
---      ,[ContactTitle]
---      ,[Address]
---      ,[City]
---      ,[Region]
---      ,[PostalCode]
---      ,[Country]
---      ,[Phone]
---      ,[Fax]
---  FROM [dbo].[Customers]
---GO
+TRUNCATE TABLE DimCustomers
+GO
+
+INSERT INTO DimCustomers
+SELECT [CustomerID]
+      ,[CompanyName]
+      ,[ContactName]
+      ,[City]
+      ,[Region]
+      ,[PostalCode]
+      ,[Country]
+  FROM Northwind.[dbo].[Customers]
+GO
 
 -- DimProduct
 TRUNCATE TABLE DimProduct
@@ -49,18 +44,15 @@ SELECT [ProductID]
   INNER JOIN Northwind.[dbo].[Categories] Categories
   ON Products.CategoryID = Categories.CategoryID
 
-
-
-
-
-
-
-
-
 -- FactOrder
 
+TRUNCATE TABLE FactOrder
+GO
+
 INSERT INTO [dbo].[FactOrder]
-SELECT [ShipPostalCode]
+SELECT Orders.[OrderID]
+	, 'PostalCode' = ShipPostalCode
+	,	CustomerID
       ,[ProductID]
       ,[EmployeeId]
       , 'ShipperId' = NULL
@@ -73,5 +65,4 @@ SELECT [ShipPostalCode]
   INNER JOIN DimDate
   ON Orders.OrderDate = dimdate.[date]
 GO
-
 
