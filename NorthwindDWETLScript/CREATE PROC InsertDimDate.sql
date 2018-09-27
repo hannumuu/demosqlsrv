@@ -18,17 +18,6 @@ GO
 
 
 -- =============================================
--- Author:		Jyrki Pirtonen
--- Create date: 2018-05-04
--- Update date: 2018-08-14 (Jari Keiski)
---              - Duplicate 20241231 row removed
---              2018-08-27 (Jari Keiski)
---              - Missing and unknown rows removed
---              - QUARTER added
---              2018-09-17 (Jari Keiski)
---              - Cleanup
---              - Start date to 2014-01-01
---              - YEARQUARTER added
 -- Description:	Insert DIM_DATE
 
 -- EXEC insert_DIM_DATE

@@ -59,7 +59,7 @@ SELECT Orders.[OrderID]
       , 'Total Sales' = UnitPrice * Quantity
       ,[Discount]
       , 'Unit Sales' = [Quantity]
-      ,[TimeKey] = dimdate.datekey
+      ,[DateKey] = dimdate.datekey
   FROM Northwind.[dbo].[Orders] Orders INNER JOIN Northwind.[dbo].[Order Details] OrderDetails
   ON Orders.OrderID = orderdetails.OrderID
   INNER JOIN DimDate

@@ -150,19 +150,19 @@
             "sourceColumn": "Unit Sales"
           },
           {
-            "name": "TimeKey",
-            "dataType": "int64",
-            "sourceColumn": "TimeKey"
-          },
-          {
             "name": "OrderID",
             "dataType": "int64",
             "sourceColumn": "OrderID"
           },
           {
             "name": "CustomerID",
-            "dataType": "int64",
+            "dataType": "string",
             "sourceColumn": "CustomerID"
+          },
+          {
+            "name": "DateKey",
+            "dataType": "int64",
+            "sourceColumn": "DateKey"
           }
         ],
         "partitions": [
@@ -328,6 +328,13 @@
         "fromColumn": "EmployeeId",
         "toTable": "DimEmployee",
         "toColumn": "EmployeeID"
+      },
+      {
+        "name": "86344c7c-7a4f-48a9-8e1d-55792e750ea3",
+        "fromTable": "FactOrder",
+        "fromColumn": "DateKey",
+        "toTable": "DimDate",
+        "toColumn": "DateKey"
       }
     ],
     "annotations": [
